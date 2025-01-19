@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    header {
+      background: #007bff;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background: #f4f4f9;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ccc;
+    }
+    nav a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    .book-list {
+      list-style: none;
+      padding: 0;
+    }
+    .book-list li {
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .book-list li strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #007bff;
+      color: white;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Welcome to the Library, <span th:text="${username}">User</span>!</h1>
+</header>
+<nav>
+  <a href="#search">Search Books</a>
+  <a href="#loans">My Loans</a>
+  <a href="#profile">Profile</a>
+  <a th:href="@{/logout}">Logout</a>
+</nav>
+<main>
+  <section id="search">
+    <h2>Search Books</h2>
+    <form th:action="@{/books/search}" method="get">
+      <input type="text" name="query" placeholder="Enter book title or author" required>
+      <button type="submit">Search</button>
+    </form>
+    <ul class="book-list" th:if="${books != null}">
+      <li th:each="book : ${books}">
+        <strong th:text="${book.title}">Book Title</strong>
+        <span>Author: <span th:text="${book.author}">Author Name</span></span><br>
+        <span>Publisher: <span th:text="${book.publisher}">Publisher Name</span></span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="loans">
+    <h2>My Loans</h2>
+    <ul class="book-list" th:if="${loans != null}">
+      <li th:each="loan : ${loans}">
+        <strong th:text="${loan.book.title}">Book Title</strong>
+        <span>Borrowed on: <span th:text="${loan.borrowDate}">Date</span></span><br>
+        <span>Due on: <span th:text="${loan.dueDate}">Date</span></span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="profile">
+    <h2>My Profile</h2>
+    <p><strong>Username:</strong> <span th:text="${username}">User</span></p>
+    <p><strong>Email:</strong> <span th:text="${email}">user@example.com</span></p>
+    <p><strong>Membership Status:</strong> Active</p>
+  </section>
+</main>
+<footer>
+  <p>Library System &copy; 2025</p>
+</footer>
+</body>
+</html>
