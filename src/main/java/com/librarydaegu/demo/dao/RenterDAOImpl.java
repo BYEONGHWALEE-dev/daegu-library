@@ -47,8 +47,8 @@ public class RenterDAOImpl implements RenterDAO {
     }
 
     @Override // find the renter By email
-    public String findByEmail(String email) {
-        TypedQuery<String> theQuery = entityManager.createQuery("SELECT r FROM Renter r WHERE r.email = :email", String.class);
+    public Renter findByEmail(String email) {
+        TypedQuery<Renter> theQuery = entityManager.createQuery("SELECT r FROM Renter r WHERE r.email = :email", Renter.class);
 
         theQuery.setParameter("email", email);
 

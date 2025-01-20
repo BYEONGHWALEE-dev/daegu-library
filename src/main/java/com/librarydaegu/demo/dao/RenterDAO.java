@@ -13,7 +13,7 @@ public interface RenterDAO {
 
     List<Renter> getAllRenters();
 
-    String findByEmail(String email);
+    Renter findByEmail(String email);
 
     RenterEmailPassword findRenterEmailPasswordById(int id);
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,7 +76,7 @@
 </head>
 <body>
 <header>
-  <h1>Welcome to the Library, <span th:text="${username}">User</span>!</h1>
+  <h1>Welcome to the Library, <span th:text="${renter.firstName}"></span>!</h1>
 </header>
 <nav>
   <a href="#search">Search Books</a>
@@ -112,8 +113,7 @@
 
   <section id="profile">
     <h2>My Profile</h2>
-    <p><strong>Username:</strong> <span th:text="${username}">User</span></p>
-    <p><strong>Email:</strong> <span th:text="${email}">user@example.com</span></p>
+    <p><strong>Email:</strong> <span th:text="${renter.getEmail()}"></span></p>
     <p><strong>Membership Status:</strong> Active</p>
   </section>
 </main>
