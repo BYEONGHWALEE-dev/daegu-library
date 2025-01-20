@@ -11,9 +11,7 @@ public class LoginController {
     @GetMapping("/login")
     public String login(Model theModel) {
 
-        theModel.addAttribute("renter", new Renter());
-
         // return name of html(It's different from the parameter of GetMapping annotation)
-        return "/login";
+        return "login";
     }
 }

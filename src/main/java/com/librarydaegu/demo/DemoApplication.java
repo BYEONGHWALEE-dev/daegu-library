@@ -24,6 +24,7 @@ public class DemoApplication {
 
 		return runner -> {
 			// putPassword(renterDAO, passwordEncoder);
+			System.out.println("Welcome to Daegu Library");
 		};
 	}
 

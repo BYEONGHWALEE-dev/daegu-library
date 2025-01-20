@@ -69,7 +69,7 @@
 <body>
 <div class="login-container">
   <h2>Daegu Library Login</h2>
-  <form th:action="@{/login}" th:object="" method="post">
+  <form th:action="@{/authenticateTheUser}" method="POST">
     <div th:if="${param.error}" class="error">Invalid username or password</div> */
     <label for="email">Username</label>
     <input type="text" id="email" name="username" required>

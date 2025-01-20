@@ -22,7 +22,7 @@ public class Renter {
 
     private String gender;
 
-    @OneToMany(mappedBy = "Book")
+    @OneToMany(mappedBy = "renter")
     private List<Book> books;
 
     // define constructor
@@ -71,7 +71,6 @@ public class Renter {
         this.gender = gender;
     }
 
-    public void add
 
     @Override
     public String toString() {
