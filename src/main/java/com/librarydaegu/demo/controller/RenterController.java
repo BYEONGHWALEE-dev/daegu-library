@@ -34,7 +34,7 @@ public class RenterController {
     }
 }
 
- /*
+/*
         // create Query to find name based on email
         TypedQuery<Renter> theRenter = entityManager.createQuery("SELECT r FROM Renter r WHERE r.email = :email ", Renter.class);
         theRenter.setParameter("email", email);
@@ -42,4 +42,4 @@ public class RenterController {
         // get the result
         Renter renter = theRenter.getSingleResult();
 
-         */
+*/

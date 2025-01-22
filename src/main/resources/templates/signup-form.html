@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .signup-container {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            margin: 0 0 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: #fff;
+            background: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .back-btn {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: #007bff;
+            background: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            width: 100%;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="signup-container">
+    <h2>Daegu Library Sign Up</h2>
+    <form th:action="@{/register}" th:object="${newRenterEmailPassword}" method="POST">
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" th:field="*{renter.firstName}" required>
+
+        <label for="lastname">Last Name</label>
+        <input type="text" id="lastname" th:field="*{renter.lastName}" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" th:field="*{email}" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" th:field="*{password}" required>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+        <div id="errorMessage" style="color: red; display: none;">Passwords do not match.</div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+    <a href="/login" class="back-btn">Back to Login</a> <!-- 로그인 페이지로 돌아가는 버튼 -->
+</div>
+</body>
+</html>
+
+<script>
+    document.getElementById("passwordForm").addEventListener("submit", function(event) {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+            event.preventDefault();  // 폼 제출을 막음
+            document.getElementById("errorMessage").style.display = "block";  // 에러 메시지 표시
+        } else {
+            document.getElementById("errorMessage").style.display = "none";  // 에러 메시지 숨기기
+        }
+    });
+</script>

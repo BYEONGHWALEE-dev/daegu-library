@@ -18,7 +18,8 @@ public class RenterEmailPassword {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
     @JoinColumn(name = "renter_detail_id")
     private Renter renter;
 

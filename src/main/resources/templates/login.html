@@ -70,13 +70,15 @@
 <div class="login-container">
   <h2>Daegu Library Login</h2>
   <form th:action="@{/authenticateTheUser}" method="POST">
-    <div th:if="${param.error}" class="error">Invalid username or password</div> */
+    <div th:if="${param.error}" class="error">Invalid username or password</div>
     <label for="email">Username</label>
     <input type="text" id="email" name="username" required>
     <label for="password">Password</label>
     <input type="password" id="password" name="password" required>
     <button type="submit">Login</button>
   </form>
+  <br>
+  <a href="/signup" class="signup-btn">Sign Up</a>
 </div>
 </body>
 </html>
