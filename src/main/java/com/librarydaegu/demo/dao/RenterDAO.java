@@ -2,6 +2,7 @@ package com.librarydaegu.demo.dao;
 
 import com.librarydaegu.demo.entity.renter.Renter;
 import com.librarydaegu.demo.entity.renter.RenterEmailPassword;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -18,7 +19,8 @@ public interface RenterDAO {
     RenterEmailPassword findRenterEmailPasswordById(int id);
 
     // add functions
-    void addRenterEmailPasswordWithRenter(String email, String password, Renter renter);
+    void addRenterEmailPasswordWithRenter(RenterEmailPassword emailPassword);
+
 
     // delete functions
     void deleteAllRenterEmailPassword();

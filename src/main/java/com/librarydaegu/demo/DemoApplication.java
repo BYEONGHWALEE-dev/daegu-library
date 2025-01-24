@@ -44,7 +44,7 @@ public class DemoApplication {
 			String thePas = passwordEncoder.encode(rawpassword);
 
 			// insert into the database
-			renterDAO.addRenterEmailPasswordWithRenter(theEmail, thePas, theRenter);
+			RenterEmailPassword renterEmailPassword = new RenterEmailPassword(theEmail, thePas);
 		}
 	}
 

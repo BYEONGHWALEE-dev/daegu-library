@@ -36,6 +36,8 @@ public class LibrarySecurityConfig {
         http.authorizeHttpRequests(auth ->
                         auth
                                 .requestMatchers("/login").permitAll()
+                                .requestMatchers("/signup").permitAll()
+                                .requestMatchers("/register").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(

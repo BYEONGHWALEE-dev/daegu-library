@@ -66,14 +66,11 @@ public class RenterDAOImpl implements RenterDAO {
 
     // add functions
 
+    @Transactional
     @Override
-    @Transactional // add RenterEmailPassword with Renter
-    public void addRenterEmailPasswordWithRenter(String email, String password, Renter renter) {
+    public void addRenterEmailPasswordWithRenter(RenterEmailPassword theRenterEmailPassword) {
 
         // add an object with entitymanager
-        RenterEmailPassword theRenterEmailPassword = new RenterEmailPassword(email, password);
-        theRenterEmailPassword.setRenter(renter);
-
         entityManager.persist(theRenterEmailPassword);
     }
 

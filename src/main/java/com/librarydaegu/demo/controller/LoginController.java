@@ -1,5 +1,6 @@
 package com.librarydaegu.demo.controller;
 
+import com.librarydaegu.demo.dao.RenterDAO;
 import com.librarydaegu.demo.entity.renter.Renter;
 import com.librarydaegu.demo.entity.renter.RenterEmailPassword;
 import jakarta.persistence.EntityManager;
@@ -9,17 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class LoginController {
 
-    // define fields to utilize
-    EntityManager entityManager;
+    RenterDAO renterDAO;
 
-    // define constrcutor to autowire entitymanager
-    public LoginController(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public LoginController(RenterDAO renterDAO) {
+        this.renterDAO = renterDAO;
     }
 
     // login page
@@ -37,12 +37,11 @@ public class LoginController {
         // Model for the renteremailpassword entity
         theModel.addAttribute("newRenterEmailPassword", new RenterEmailPassword());
 
-
         return "signup-form";
     }
 
-    @PutMapping("/register")
-    public void register(@ModelAttribute("newRenterEmailPassword") RenterEmailPassword newRenterEmailPassword) {
+    @PostMapping("/register")
+    public String register(@ModelAttribute("newRenterEmailPassword") RenterEmailPassword newRenterEmailPassword) {
 
         // shouldn't persist data immediately because of plain password
         String plainPassword = newRenterEmailPassword.getPassword();
@@ -51,7 +50,15 @@ public class LoginController {
 
         newRenterEmailPassword.setPassword(encoder.encode(plainPassword));
 
+        // define renter to put in RenterEmailPassword as a field
+        Renter theRenter = new Renter();
+        theRenter.setEmail(newRenterEmailPassword.getEmail());
+
+        newRenterEmailPassword.setRenter(theRenter);
+
         // add the renter
-        entityManager.persist(newRenterEmailPassword);
+        renterDAO.addRenterEmailPasswordWithRenter(newRenterEmailPassword);
+
+        return "redirect:/login";
     }
 }

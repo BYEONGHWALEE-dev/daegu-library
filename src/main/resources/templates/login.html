@@ -78,7 +78,9 @@
     <button type="submit">Login</button>
   </form>
   <br>
-  <a href="/signup" class="signup-btn">Sign Up</a>
+  <form th:action="@{/signup}" method="GET">
+    <button type="submit" class="signup-btn">Sign Up</button>
+  </form>
 </div>
 </body>
 </html>
