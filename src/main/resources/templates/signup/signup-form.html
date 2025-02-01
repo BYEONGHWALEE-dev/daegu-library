@@ -46,7 +46,8 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        button {
+        button,
+        .back-btn {
             padding: 0.75rem;
             font-size: 1rem;
             color: #fff;
@@ -54,10 +55,23 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            text-align: center;
+            display: block;
+            width: 100%;
+            transition: background 0.3s ease, color 0.3s ease;
+            box-sizing: border-box; /* 패딩 포함 크기 조정 */
         }
         button:hover {
             background: #0056b3;
+        }
+        .back-btn {
+            color: #007bff;
+            background: #fff;
+            border: 1px solid #007bff;
+        }
+        .back-btn:hover {
+            background: #007bff;
+            color: #fff;
         }
         .error {
             color: red;
@@ -65,30 +79,12 @@
             text-align: center;
             margin-bottom: 1rem;
         }
-        .back-btn {
-            margin-top: 1rem;
-            padding: 0.75rem;
-            font-size: 1rem;
-            color: #007bff;
-            background: #fff;
-            border: 1px solid #007bff;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            display: block;
-            width: 100%;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-        .back-btn:hover {
-            background: #007bff;
-            color: #fff;
-        }
     </style>
 </head>
 <body>
 <div class="signup-container">
     <h2>Daegu Library Sign Up</h2>
-    <form th:action="@{/register}" th:object="${newRenterEmailPassword}" method="post">
+    <form id="passwordForm" th:action="@{/register}" th:object="${newRenterEmailPassword}" method="post">
 
         <label for="email">Email Address</label>
         <input type="email" id="email" th:field="*{email}" required>
@@ -101,13 +97,16 @@
 
         <div id="errorMessage" style="color: red; display: none;">Passwords do not match.</div>
 
+        <br>
+
         <button type="submit">Sign Up</button>
     </form>
-    <a href="/login.html" class="back-btn">Back to Login</a> <!-- 로그인 페이지로 돌아가는 버튼 -->
+
+    <br>
+
+    <a href="@{/login}" class="back-btn">Back to Login</a>
 </div>
 </body>
-</html>
-
 <script>
     document.getElementById("passwordForm").addEventListener("submit", function(event) {
         var password = document.getElementById("password").value;
@@ -121,3 +120,4 @@
         }
     });
 </script>
+</html>

@@ -3,15 +3,12 @@ package com.librarydaegu.demo.controller;
 import com.librarydaegu.demo.dao.RenterDAO;
 import com.librarydaegu.demo.entity.renter.Renter;
 import com.librarydaegu.demo.entity.renter.RenterEmailPassword;
-import jakarta.persistence.EntityManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class LoginController {
@@ -37,7 +34,7 @@ public class LoginController {
         // Model for the renteremailpassword entity
         theModel.addAttribute("newRenterEmailPassword", new RenterEmailPassword());
 
-        return "signup-form";
+        return "/signup/signup-form";
     }
 
     @PostMapping("/register")
@@ -59,6 +56,6 @@ public class LoginController {
         // add the renter
         renterDAO.addRenterEmailPasswordWithRenter(newRenterEmailPassword);
 
-        return "redirect:/login";
+        return "/signup/signup-completed";
     }
 }
